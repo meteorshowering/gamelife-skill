@@ -1,6 +1,6 @@
 {
   "name": "gamelife-skill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "对话驱动的 GameLife 任务管理：任务面板、复杂任务拆解和每日四项行动推荐。",
   "author": {
     "name": "meteorshowering",

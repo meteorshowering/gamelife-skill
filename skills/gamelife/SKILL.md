@@ -23,8 +23,9 @@ Do not expand version 0.1 into habits, achievements, levels, maps, social featur
 2. Classify the request as capture/update, decompose, recommend, query, or panel edit. Use the narrowest mode that satisfies the request.
 3. Produce a structured change preview before mutating task state. Separate user-stated facts, inferences, and suggestions; keep evidence/source text when available.
 4. Ask for confirmation when creating a task from an ambiguous input, persisting a decomposition, changing several tasks, deleting/archiving, or replacing a daily recommendation.
-5. Apply confirmed changes through the state contract in `references/data-schema.md`, then update the HTML workbench or generate a fresh copy from `assets/gamelife.html`.
-6. Report what changed, what remains uncertain, and where the HTML artifact was written. Never claim to have read an inaccessible historical conversation.
+5. Apply confirmed changes through the state contract in `references/data-schema.md`.
+6. Before delivering an HTML workbench, read `references/ui-contract.md` and `references/rendering.md`; use `scripts/render_workbench.py` to generate a user-facing copy when a state file is available. Keep the bundled assets unchanged as the public template.
+7. Report what changed, what remains uncertain, and where the HTML artifact was written. Never claim to have read an inaccessible historical conversation.
 
 ## Conversation access boundary
 
@@ -51,7 +52,7 @@ The HTML is a real user interface, not a screenshot. Preserve the existing GameL
 
 The desktop layout is the primary `0.1` acceptance target. Keep the same HTML responsive so it remains usable on mobile; if a conflict appears, preserve task operations and readable mobile cards before decorative fidelity.
 
-Read `references/ui-contract.md` before changing the HTML and `references/data-schema.md` before changing stored fields. Use the deterministic helpers in `scripts/` for state validation and daily selection when available.
+Use the deterministic helpers in `scripts/` for state validation, rendering and daily selection when available. Do not add a backend or third-party runtime dependency to the public HTML in version 0.1.
 
 ## Safety and truthfulness
 

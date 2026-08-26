@@ -2,7 +2,7 @@
 
 `gamelife-skill` 是一个对话驱动的 GameLife Skill / Codex 插件包。它把用户在当前对话中表达的工作内容，整理成可执行任务，并配合一个可直接打开的 HTML 冒险手册工作台。
 
-当前版本：`0.1.0`（对外简称 `0.1`）
+当前版本：`0.1.1`（对外仍属于 `0.1` 系列）
 
 ## 0.1 的核心能力
 
@@ -29,7 +29,13 @@ Skill 会先展示拟写入的任务变化；复杂任务的拆解需要用户�
 
 ## HTML 工作台
 
-打开 `assets/gamelife.html` 可以直接查看和操作工作台。它提供：
+直接打开 `assets/gamelife.html` 可以查看和操作示例工作台。需要把某份已确认状态渲染成用户工作台时，执行：
+
+```powershell
+python skills\gamelife\scripts\render_workbench.py --output-dir <目标目录> --state <状态文件>
+```
+
+工作台提供：
 
 - 冒险手册风格的任务总览、进度统计和筛选。
 - 今日四项行动推荐。
@@ -41,6 +47,7 @@ HTML 是交互呈现层，状态字段和 Agent 使用的结构化约定见：
 
 - `skills/gamelife/references/data-schema.md`
 - `skills/gamelife/references/ui-contract.md`
+- `skills/gamelife/references/rendering.md`
 
 ## 历史对话边界
 
@@ -60,7 +67,8 @@ python -m unittest discover -s tests -p "test_*.py"
 
 ## 版本管理
 
-- `0.1.0`：任务面板、任务拆解、每日四项行动推荐。
+- `0.1.0`：任务面板、任务拆解、每日四项行动推荐的首个核心基线。
+- `0.1.1`：增加从状态文件渲染可交付 HTML 工作台的能力，并修复资源路径问题。
 - `0.1.x`：修复、兼容性、样式和文案调整，不改变核心数据契约。
 - `0.2.0`：再考虑历史对话连接器、复盘、批量操作和更多 GameLife 模块。
 - 每次发布同步更新 `.codex-plugin/plugin.json`、`CHANGELOG.md`、Skill 说明、测试和 `schema_version` 迁移说明。
