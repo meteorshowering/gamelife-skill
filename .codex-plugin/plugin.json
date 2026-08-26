@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/meteorshowering/gamelife-skill",
   "repository": "https://github.com/meteorshowering/gamelife-skill",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "keywords": [
     "gamelife",
     "tasks",
