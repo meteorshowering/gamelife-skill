@@ -1,0 +1,5 @@
+interface:
+  display_name: "GameLife"
+  short_description: "通过对话管理任务、拆解复杂目标并生成每日四项行动推荐"
+  default_prompt: "Use $gamelife to整理任务、拆解一个大目标，并生成今天的四条行动推荐。"
+  brand_color: "#123B5D"

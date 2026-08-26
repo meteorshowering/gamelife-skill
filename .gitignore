@@ -1,0 +1,10 @@
+# Local user state and browser artifacts
+*.local.json
+gamelife-state.json
+.gamelife/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "version": "0.1.0",
+  "updated_at": "2026-08-27T00:00:00.000Z",
+  "profile": {
+    "nickname": "旅行者"
+  },
+  "chapters": [
+    {
+      "id": "chapter-main-study",
+      "title": "大学学业",
+      "description": "学习与课程推进",
+      "type": "main",
+      "status": "active",
+      "progress": 35,
+      "order": 1
+    },
+    {
+      "id": "chapter-side-creative",
+      "title": "AI 创作",
+      "description": "创意与实验",
+      "type": "side",
+      "status": "active",
+      "progress": 20,
+      "order": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-course-review",
+      "chapter_id": "chapter-main-study",
+      "title": "完成本周课程复盘",
+      "description": "整理课堂笔记并记录薄弱点",
+      "type": "study",
+      "status": "in_progress",
+      "priority": "high",
+      "progress": 35,
+      "due_date": "2026-08-29",
+      "subtasks": [
+        {
+          "id": "subtask-course-notes",
+          "task_id": "task-course-review",
+          "title": "整理课堂笔记",
+          "description": "合并本周笔记",
+          "status": "todo",
+          "order": 1,
+          "estimated_minutes": 25,
+          "needs_confirmation": false,
+          "created_at": "2026-08-27T00:00:00.000Z",
+          "updated_at": "2026-08-27T00:00:00.000Z",
+          "completed_at": ""
+        }
+      ],
+      "ai_generated": false,
+      "ai_reason": "",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-08-27T00:00:00.000Z",
+      "completed_at": ""
+    },
+    {
+      "id": "task-library",
+      "chapter_id": "chapter-main-study",
+      "title": "图书馆深度研习",
+      "description": "完成第三章习题集",
+      "type": "study",
+      "status": "todo",
+      "priority": "medium",
+      "progress": 0,
+      "due_date": "",
+      "subtasks": [],
+      "ai_generated": false,
+      "ai_reason": "",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-08-27T00:00:00.000Z",
+      "completed_at": ""
+    },
+    {
+      "id": "task-ai-materials",
+      "chapter_id": "chapter-side-creative",
+      "title": "整理 AI 创作素材库",
+      "description": "清理旧素材并保留可复用提示词",
+      "type": "creative",
+      "status": "in_progress",
+      "priority": "medium",
+      "progress": 65,
+      "due_date": "",
+      "subtasks": [],
+      "ai_generated": false,
+      "ai_reason": "",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-08-27T00:00:00.000Z",
+      "completed_at": ""
+    },
+    {
+      "id": "task-experiment",
+      "chapter_id": "chapter-side-creative",
+      "title": "完成一个小型实验",
+      "description": "验证一个创作想法",
+      "type": "creative",
+      "status": "todo",
+      "priority": "low",
+      "progress": 0,
+      "due_date": "",
+      "subtasks": [],
+      "ai_generated": false,
+      "ai_reason": "",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-08-27T00:00:00.000Z",
+      "completed_at": ""
+    },
+    {
+      "id": "task-finished",
+      "chapter_id": "chapter-side-creative",
+      "title": "已完成的示例任务",
+      "description": "用于验证完成状态",
+      "type": "creative",
+      "status": "completed",
+      "priority": "medium",
+      "progress": 100,
+      "due_date": "",
+      "subtasks": [],
+      "ai_generated": false,
+      "ai_reason": "",
+      "created_at": "2026-08-27T00:00:00.000Z",
+      "updated_at": "2026-08-27T00:00:00.000Z",
+      "completed_at": "2026-08-27T00:00:00.000Z"
+    }
+  ],
+  "daily_recommendations": {},
+  "sources": [],
+  "settings": {
+    "daily_recommendation_count": 4
+  }
+}

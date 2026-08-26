@@ -1,0 +1,34 @@
+{
+  "name": "gamelife-skill",
+  "version": "0.1.0",
+  "description": "对话驱动的 GameLife 任务管理：任务面板、复杂任务拆解和每日四项行动推荐。",
+  "author": {
+    "name": "meteorshowering",
+    "url": "https://github.com/meteorshowering"
+  },
+  "homepage": "https://github.com/meteorshowering/gamelife-skill",
+  "repository": "https://github.com/meteorshowering/gamelife-skill",
+  "license": "MIT",
+  "keywords": [
+    "gamelife",
+    "tasks",
+    "planning",
+    "productivity",
+    "daily-focus",
+    "task-decomposition"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GameLife",
+    "shortDescription": "通过对话管理任务、拆解复杂目标并生成每日四项行动推荐",
+    "longDescription": "GameLife 将自然语言工作内容转成可确认的任务和子任务，配合可编辑的冒险手册 HTML 面板，并每天生成四项行动推荐。",
+    "developerName": "meteorshowering",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/meteorshowering/gamelife-skill",
+    "defaultPrompt": [
+      "用 $gamelife 整理我的任务，拆解一个大目标，并生成今天的四项行动推荐。"
+    ],
+    "brandColor": "#123B5D"
+  }
+}

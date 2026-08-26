@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#123b5d" />
+    <meta name="description" content="GameLife 冒险手册任务工作台" />
+    <title>GameLife · 冒险手册</title>
+    <link rel="stylesheet" href="./gamelife.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="GameLife 首页">
+          <span class="brand-mark">✦</span>
+          <span>
+            <strong>GAMELIFE</strong>
+            <small>ADVENTURE LOG</small>
+          </span>
+        </a>
+        <div class="topbar-actions">
+          <span class="save-status" id="save-status">本地状态已准备</span>
+          <button class="button button-ghost" id="reset-demo" type="button">恢复示例</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero-section page-section">
+          <div class="hero-copy">
+            <p class="eyebrow">LIFE ADVENTURER / 任务指挥台</p>
+            <h1>冒险手册</h1>
+            <p class="hero-subtitle">把长期目标写成一段可完成的旅程。</p>
+            <div class="hero-pills" aria-label="工作台说明">
+              <span>对话整理</span>
+              <span>任务拆解</span>
+              <span>每日四项行动</span>
+            </div>
+          </div>
+          <div class="hero-emblem" aria-hidden="true">
+            <span>✦</span>
+            <small>KEEP<br />MOVING</small>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-card-head">
+              <div>
+                <p class="progress-label">整体冒险进度</p>
+                <p class="progress-count"><span id="completed-count">0</span> <small>/ <span id="total-count">0</span> 项完成</small></p>
+              </div>
+              <strong class="progress-percent" id="overall-progress">0%</strong>
+            </div>
+            <div class="progress-track"><span id="overall-progress-fill"></span></div>
+            <div class="progress-card-foot">
+              <span><b id="active-count">0</b> 项正在推进</span>
+              <span id="profile-caption">旅行者 · 0 条冒险线</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="focus-section page-section" id="today-section">
+          <div class="section-heading focus-heading">
+            <div>
+              <p class="section-kicker">TODAY'S FOCUS</p>
+              <h2>今日四项行动</h2>
+              <p class="section-description" id="today-caption">为今天挑选四个值得推进的动作。</p>
+            </div>
+            <div class="heading-actions">
+              <span class="date-chip" id="today-date">----</span>
+              <button class="button button-light" id="refresh-recommendations" type="button">重新安排</button>
+            </div>
+          </div>
+          <div class="recommendation-grid" id="recommendation-list" aria-live="polite"></div>
+        </section>
+
+        <section class="tasks-section page-section" id="tasks-section">
+          <div class="section-heading tasks-heading">
+            <div>
+              <p class="section-kicker">YOUR QUESTS</p>
+              <h2>正在发生的冒险</h2>
+            </div>
+            <button class="button button-primary" id="open-create-task" type="button"><span>＋</span> 新任务</button>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-control">
+              <span aria-hidden="true">⌕</span>
+              <input id="task-search" type="search" placeholder="搜索任务或描述" autocomplete="off" />
+              <button id="clear-search" class="clear-search" type="button" aria-label="清除搜索" hidden>×</button>
+            </label>
+            <div class="filter-group" aria-label="章节筛选">
+              <button class="filter-button active" type="button" data-chapter-filter="all">全部章节</button>
+              <button class="filter-button" type="button" data-chapter-filter="main">主线冒险</button>
+              <button class="filter-button" type="button" data-chapter-filter="side">支线冒险</button>
+            </div>
+            <div class="filter-group status-filter" aria-label="状态筛选">
+              <button class="filter-button active" type="button" data-status-filter="all">全部</button>
+              <button class="filter-button" type="button" data-status-filter="active">进行中</button>
+              <button class="filter-button" type="button" data-status-filter="completed">已完成</button>
+            </div>
+          </div>
+
+          <div class="task-list" id="task-list" aria-live="polite"></div>
+          <div class="empty-state" id="task-empty" hidden>
+            <div class="empty-icon">✧</div>
+            <h3>这一页还没有冒险</h3>
+            <p>创建一个小任务，让今天开始移动。</p>
+            <button class="button button-primary" id="open-empty-create" type="button">创建第一项任务</button>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="工作台导航">
+        <button class="nav-button active" type="button" data-scroll-target="today-section">
+          <span class="nav-icon">◷</span><span>今日行动</span>
+        </button>
+        <button class="nav-button" type="button" data-scroll-target="tasks-section">
+          <span class="nav-icon">▤</span><span>冒险手册</span>
+        </button>
+        <button class="nav-button nav-button-accent" type="button" id="open-mobile-create">
+          <span class="nav-icon">＋</span><span>新任务</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="modal-backdrop" id="task-modal" hidden>
+      <section class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header">
+          <div>
+            <p class="section-kicker">QUEST EDITOR</p>
+            <h2 id="modal-title">创建新任务</h2>
+          </div>
+          <button class="icon-button" id="close-task-modal" type="button" aria-label="关闭">×</button>
+        </div>
+
+        <form id="task-form">
+          <input id="editing-task-id" type="hidden" value="" />
+          <div class="form-group">
+            <label for="task-title">任务名称 <span>*</span></label>
+            <input id="task-title" name="title" type="text" maxlength="80" placeholder="例如：完成本周课程复盘" required />
+          </div>
+          <div class="form-group">
+            <label for="task-description">任务描述</label>
+            <textarea id="task-description" name="description" maxlength="240" rows="3" placeholder="写下完成它的关键动作或背景"></textarea>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="task-chapter">所属章节</label>
+              <select id="task-chapter" name="chapter_id"></select>
+            </div>
+            <div class="form-group">
+              <label for="task-type">任务类型</label>
+              <select id="task-type" name="type">
+                <option value="study">学习</option>
+                <option value="work">工作</option>
+                <option value="health">健康</option>
+                <option value="creative">创作</option>
+                <option value="life">生活</option>
+                <option value="review">复盘</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="task-priority">优先级</label>
+              <select id="task-priority" name="priority">
+                <option value="low">低优先级</option>
+                <option value="medium" selected>普通优先级</option>
+                <option value="high">高优先级</option>
+                <option value="urgent">紧急任务</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="task-due-date">截止日期</label>
+              <input id="task-due-date" name="due_date" type="date" />
+            </div>
+          </div>
+          <div class="form-group progress-form-group">
+            <div class="form-label-row">
+              <label for="task-progress">当前进度</label>
+              <output id="task-progress-output" for="task-progress">0%</output>
+            </div>
+            <input id="task-progress" name="progress" type="range" min="0" max="100" step="5" value="0" />
+          </div>
+
+          <div class="decompose-box">
+            <div>
+              <strong>需要把它拆开吗？</strong>
+              <p>让 Agent 在对话中分析；这里也提供一个无网络的预览兜底。</p>
+            </div>
+            <button class="button button-secondary" id="decompose-task" type="button">生成拆解预览</button>
+          </div>
+          <div class="decomposition-panel" id="decomposition-panel" hidden>
+            <div class="decomposition-header">
+              <div>
+                <p class="section-kicker">DRAFT STEPS</p>
+                <strong>确认后加入任务</strong>
+              </div>
+              <button class="text-button" id="add-subtask" type="button">＋ 添加步骤</button>
+            </div>
+            <div id="decomposition-list"></div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="button button-light" id="cancel-task-modal" type="button">取消</button>
+            <button class="button button-primary" type="submit">保存任务</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./gamelife.js" defer></script>
+  </body>
+</html>
