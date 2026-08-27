@@ -1,6 +1,6 @@
 # gamelife-skill
 
-`gamelife-skill` 是一个对话驱动的 GameLife Skill / Codex 插件包。它把用户在当前对话中表达的工作内容，整理成可执行任务，并配合一个可直接打开的 HTML 冒险手册工作台。
+`gamelife-skill` 是一个对话驱动的 GameLife Skill / Codex 插件包。它把用户在当前对话中表达的工作内容，整理成可执行任务，并配合一个可直接打开的 HTML 任务工作台。
 
 当前版本：`0.0.2`（电脑端布局优化版本）
 
@@ -37,7 +37,7 @@ python skills\gamelife\scripts\render_workbench.py --output-dir <目标目录> -
 
 工作台提供：
 
-- 冒险手册风格的任务总览、进度统计和筛选。
+- 简洁任务工作台的任务总览、进度统计和筛选。
 - 今日四项行动推荐。
 - 新建任务、编辑任务、完成任务、删除任务。
 - 大任务的本地拆解预览和子任务编辑。

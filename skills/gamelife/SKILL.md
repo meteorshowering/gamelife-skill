@@ -11,7 +11,7 @@ Use this skill when the user wants to turn work or life actions into a GameLife 
 
 This skill is the `gamelife-skill` package's first core release. Keep the work centered on:
 
-1. A complete task panel: show all tasks, search/filter them, inspect details and subtasks, create/edit/complete/archive/delete tasks, and preserve the Adventure Log visual language.
+1. A complete task panel: show all tasks, search/filter them, inspect details and subtasks, create/edit/complete/archive/delete tasks, and preserve a compact, task-first workbench visual language.
 2. New-task decomposition: convert a large or multi-step task into an editable preview of a parent task and executable subtasks; only persist after the user confirms.
 3. Four daily recommendations: on the first GameLife run for a calendar date, choose four focus actions from unfinished tasks, explain the reasons, and avoid duplicating that day's set.
 
@@ -48,9 +48,9 @@ Version 0.0.2 does not accept exported or uploaded Codex/ChatGPT conversations, 
 
 ## HTML workbench contract
 
-The HTML is a real user interface, not a screenshot. Preserve the existing GameLife visual direction: light blue background, dark navy-to-teal hero gradient, gold progress accent, rounded translucent cards, Adventure Log/task language, and responsive layout.
+The HTML is a real user interface, not a screenshot. Preserve a calm, compact GameLife workbench: light blue background, restrained navy/teal accents, clear progress indicators, compact cards, and responsive layout. Do not add a large marketing Hero, product-explanation pills, or implementation-facing copy to the final user interface.
 
-The desktop layout is the primary `0.0.2` acceptance target. Keep the same HTML responsive so it remains usable on mobile; if a conflict appears, preserve task operations and readable mobile cards before decorative fidelity.
+The desktop layout is the primary `0.0.2` acceptance target. Use a thin summary strip and keep the main content dense: full-width desktop may use two columns, while a narrower Codex side panel should reduce type, spacing, and card density before switching to a readable single column. Keep the same HTML responsive so it remains usable on mobile.
 
 Use the deterministic helpers in `scripts/` for state validation, rendering and daily selection when available. Do not add a backend or third-party runtime dependency to the public HTML in version 0.0.2.
 

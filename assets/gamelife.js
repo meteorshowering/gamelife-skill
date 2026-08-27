@@ -291,9 +291,9 @@
     }
     if (chapter?.type === "main") {
       score += 6;
-      reasons.push("属于主线冒险");
+      reasons.push("主线任务");
     }
-    if (!reasons.length) reasons.push("从未完成任务中选择一个适合今天开始的行动");
+    if (!reasons.length) reasons.push("适合作为今天的开始");
     return { score, reason: reasons.join("；") };
   }
 
@@ -358,7 +358,7 @@
     document.querySelector("#active-count").textContent = active;
     document.querySelector("#overall-progress").textContent = `${progress}%`;
     document.querySelector("#overall-progress-fill").style.width = `${progress}%`;
-    document.querySelector("#profile-caption").textContent = `${state.profile.nickname || "旅行者"} · ${state.chapters.length} 条冒险线`;
+    document.querySelector("#profile-caption").textContent = `${state.profile.nickname || "旅行者"} · ${state.chapters.length} 个方向`;
   }
 
   function recommendationStatus(item, task) {
@@ -372,7 +372,7 @@
     const dayKey = TODAY();
     const record = ensureTodayRecommendations();
     document.querySelector("#today-date").textContent = formatToday(dayKey);
-    document.querySelector("#today-caption").textContent = `已为今天安排 ${record.items.length} 个推荐位，重复打开不会重复追加。`;
+    document.querySelector("#today-caption").textContent = "按优先级、进度和截止日期排序";
     const list = document.querySelector("#recommendation-list");
     list.innerHTML = record.items
       .map((item) => {
@@ -436,7 +436,7 @@
                     <span class="${["high", "urgent"].includes(task.priority) ? "priority-" + task.priority : ""}">${escapeHtml(PRIORITY_LABELS[task.priority] || PRIORITY_LABELS.medium)}</span>
                   </div>
                   <h3 class="task-title">${escapeHtml(task.title)}</h3>
-                  <p class="task-description">${escapeHtml(task.description || "还没有写下任务说明，点击编辑补充。")}</p>
+                  <p class="task-description">${escapeHtml(task.description || "暂无说明")}</p>
                 </div>
                 <div class="task-menu">
                   <button type="button" aria-label="编辑任务" data-action="edit-task" data-task-id="${escapeHtml(task.id)}">⋯</button>
@@ -635,7 +635,7 @@
       };
       task.subtasks.forEach((subtask) => { subtask.task_id = task.id; });
       state.tasks.unshift(task);
-      showToast(draftSubtasks.length ? "任务和子任务已保存" : "任务已加入冒险手册");
+      showToast(draftSubtasks.length ? "任务和子任务已保存" : "任务已创建");
     }
     updateChapterProgress();
     saveState();
@@ -655,7 +655,7 @@
     const item = record?.items?.find((candidate) => candidate.task_id === task.id);
     if (item) item.status = completed ? "suggested" : "completed";
     updateChapterProgress();
-    saveState(completed ? "任务已重新开启" : "任务完成，继续前进！");
+    saveState(completed ? "任务已重新开启" : "任务已完成");
     render();
   }
 
@@ -779,13 +779,13 @@
       const description = document.querySelector("#task-description").value.trim();
       const type = document.querySelector("#task-type").value;
       if (!title) {
-        showToast("先写下任务名称，再生成拆解预览");
+        showToast("先填写任务名称，再生成步骤");
         document.querySelector("#task-title").focus();
         return;
       }
       draftSubtasks = inferSubtasks(title, description, type);
       renderDraftSubtasks();
-      showToast("已生成拆解草稿，请检查后保存");
+      showToast("步骤已生成，请检查后保存");
     });
     document.querySelector("#add-subtask").addEventListener("click", () => {
       syncDraftFromDom();
