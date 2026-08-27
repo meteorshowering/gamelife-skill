@@ -1713,3 +1713,154 @@ textarea:focus-visible {
   .task-title { font-size: 14px; }
   .task-description { font-size: 10px; }
 }
+/* Today-first layout: keep all four daily recommendations visible in narrow panels. */
+@media (min-width: 390px) and (max-width: 760px) {
+  .app-shell { padding-bottom: 8px; }
+  .topbar {
+    min-height: 50px;
+    padding: 6px 12px;
+  }
+  .brand { gap: 7px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 10px; }
+  .brand strong { font-size: 13px; letter-spacing: 1.2px; }
+  .brand small { margin-top: 2px; font-size: 8px; letter-spacing: 1.1px; }
+  .save-status { display: none; }
+  .topbar-actions { gap: 5px; }
+  main#top {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .page-section {
+    width: calc(100% - 20px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .summary-strip {
+    grid-template-columns: auto auto auto minmax(72px, 1fr) auto;
+    gap: 7px;
+    min-height: 52px;
+    padding: 7px 9px;
+    border-radius: 11px;
+  }
+  .summary-title {
+    padding: 0;
+    border: 0;
+  }
+  .summary-title .section-kicker { display: none; }
+  .summary-title strong { font-size: 10px; }
+  .summary-stat {
+    gap: 4px;
+    padding-left: 7px;
+  }
+  .summary-stat span,
+  .summary-profile { font-size: 9px; }
+  .summary-stat strong { font-size: 13px; }
+  .summary-progress .progress-track { height: 5px; }
+  .summary-percent { font-size: 14px; }
+  .summary-profile { display: none; }
+  .focus-section,
+  .tasks-section { padding-top: 15px; }
+  .focus-heading,
+  .tasks-heading {
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+  .section-heading h2 { margin-top: 3px; font-size: 19px; }
+  .section-description {
+    max-width: 180px;
+    margin-top: 3px;
+    overflow: hidden;
+    font-size: 9px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .heading-actions {
+    width: auto;
+    flex-shrink: 0;
+    gap: 4px;
+  }
+  .date-chip { padding: 5px 6px; font-size: 9px; }
+  .button { min-height: 28px; padding: 0 8px; font-size: 9px; }
+  .recommendation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .recommendation-card {
+    min-height: 108px;
+    padding: 9px;
+    border-radius: 11px;
+  }
+  .recommendation-card::before {
+    width: 36px;
+    height: 36px;
+    border-radius: 0 11px 0 36px;
+  }
+  .recommendation-rank {
+    width: 21px;
+    height: 21px;
+    border-radius: 6px;
+    font-size: 9px;
+  }
+  .recommendation-status { font-size: 8px; }
+  .recommendation-card h3 {
+    min-height: 28px;
+    margin: 7px 0 3px;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .recommendation-card p {
+    min-height: 14px;
+    font-size: 9px;
+    line-height: 1.35;
+    -webkit-line-clamp: 1;
+  }
+  .recommendation-actions { gap: 4px; margin-top: 5px; }
+  .mini-action { font-size: 9px; }
+  .tasks-heading .button { min-width: 54px; }
+  .toolbar { gap: 5px; margin-bottom: 8px; }
+  .search-control { height: 32px; }
+  .filter-button { min-height: 23px; padding: 0 5px; font-size: 9px; }
+  .task-list { gap: 7px; }
+  .task-card-main { padding: 10px 11px 9px; }
+  .task-title { font-size: 12px; }
+  .task-description { font-size: 9px; }
+  .bottom-nav {
+    height: 58px;
+    padding: 5px 8px 7px;
+    border-radius: 20px 20px 0 0;
+  }
+  .nav-button { padding: 3px 8px; font-size: 9px; }
+  .nav-icon { font-size: 16px; }
+}
+
+@media (max-width: 389px) {
+  .topbar { min-height: 48px; padding: 5px 10px; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 9px; }
+  .brand strong { font-size: 12px; }
+  .brand small { font-size: 7px; }
+  .summary-strip {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    min-height: 0;
+    padding: 8px;
+  }
+  .summary-title {
+    grid-column: 1 / -1;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e7efef;
+  }
+  .summary-stat { justify-content: space-between; padding-left: 0; }
+  .summary-progress { grid-column: 1 / 3; }
+  .summary-percent { justify-self: end; }
+  .summary-profile { display: none; }
+  .focus-section,
+  .tasks-section { padding-top: 16px; }
+  .focus-heading,
+  .tasks-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .heading-actions { width: 100%; justify-content: space-between; }
+  .recommendation-grid { grid-template-columns: 1fr; gap: 7px; }
+  .recommendation-card { min-height: 96px; }
+}
