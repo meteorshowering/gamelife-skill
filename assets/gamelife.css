@@ -1421,3 +1421,119 @@ textarea:focus-visible {
   .draft-subtask input { font-size: 11px; }
   .modal-actions { margin-top: 17px; }
 }
+/* 0.0.2 density pass: make the desktop workbench compact and information-led. */
+@media (min-width: 1100px) {
+  body { font-size: 12px; }
+  .app-shell { padding-bottom: 16px; }
+  .topbar {
+    min-height: 52px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .brand { gap: 8px; }
+  .brand-mark { width: 28px; height: 28px; border-radius: 9px; }
+  .brand strong { font-size: 12px; }
+  .brand small { margin-top: 3px; font-size: 8px; letter-spacing: 1.3px; }
+  .save-status { font-size: 10px; }
+  main#top {
+    gap: 16px;
+    width: min(1440px, calc(100% - 32px));
+    margin-top: 16px;
+  }
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr) 72px minmax(280px, 0.76fr);
+    gap: 16px;
+    min-height: 152px;
+    padding: 20px 24px;
+    border-radius: 22px;
+  }
+  .eyebrow,
+  .section-kicker { font-size: 9px; letter-spacing: 2px; }
+  .hero-copy h1 { margin-top: 7px; font-size: 34px; }
+  .hero-subtitle { margin-top: 6px; font-size: 12px; }
+  .hero-pills { gap: 5px; margin-top: 12px; }
+  .hero-pills span { padding: 5px 8px; font-size: 10px; }
+  .hero-emblem { width: 72px; height: 72px; border-radius: 21px; }
+  .hero-emblem span { font-size: 29px; }
+  .hero-emblem small { margin-top: 7px; font-size: 7px; letter-spacing: 1.5px; }
+  .progress-card { padding: 13px 15px 12px; border-radius: 14px; }
+  .progress-label { font-size: 11px; }
+  .progress-count { margin-top: 2px; font-size: 22px; }
+  .progress-count small { font-size: 11px; }
+  .progress-percent { font-size: 25px; }
+  .progress-track { height: 6px; margin-top: 10px; }
+  .progress-card-foot { margin-top: 7px; font-size: 10px; }
+  .section-heading { gap: 8px; margin-bottom: 9px; }
+  .section-heading h2 { margin-top: 4px; font-size: 20px; }
+  .section-description { margin-top: 4px; font-size: 10px; }
+  .heading-actions { gap: 5px; }
+  .date-chip { padding: 5px 7px; font-size: 10px; }
+  .button { min-height: 30px; padding: 0 10px; font-size: 10px; }
+  .recommendation-grid { gap: 8px; }
+  .recommendation-card { min-height: 132px; padding: 11px; border-radius: 13px; }
+  .recommendation-card::before { width: 42px; height: 42px; border-radius: 0 13px 0 42px; }
+  .recommendation-rank { width: 22px; height: 22px; border-radius: 7px; font-size: 10px; }
+  .recommendation-status { font-size: 9px; }
+  .recommendation-card h3 { min-height: 33px; margin: 9px 0 4px; font-size: 12px; line-height: 1.35; }
+  .recommendation-card p { min-height: 28px; font-size: 10px; line-height: 1.4; }
+  .recommendation-actions { gap: 5px; margin-top: 8px; }
+  .mini-action,
+  .text-button { font-size: 10px; }
+  .toolbar { gap: 6px; margin-bottom: 9px; }
+  .search-control { height: 34px; padding: 0 10px; border-radius: 9px; }
+  .search-control > span { width: 19px; font-size: 19px; }
+  .search-control input { padding: 0 6px; font-size: 11px; }
+  .clear-search { font-size: 18px; }
+  .filter-group { gap: 2px; padding: 2px; border-radius: 8px; }
+  .filter-button { min-height: 24px; padding: 0 6px; border-radius: 6px; font-size: 10px; }
+  .task-list { gap: 8px; }
+  .task-card { border-radius: 13px; }
+  .task-card-main { padding: 11px 12px 10px; }
+  .check-button { width: 20px; height: 20px; margin-top: 1px; font-size: 11px; }
+  .task-card-head { gap: 9px; }
+  .task-meta { gap: 4px; font-size: 9px; }
+  .task-title { margin-top: 4px; font-size: 13px; line-height: 1.3; }
+  .task-description { margin-top: 4px; font-size: 10px; line-height: 1.35; }
+  .task-menu { gap: 2px; }
+  .task-menu button { width: 25px; height: 25px; font-size: 15px; }
+  .task-progress-row { gap: 7px; margin: 10px 0 9px 29px; }
+  .task-progress-track { height: 5px; }
+  .task-progress-value { width: 27px; font-size: 9px; }
+  .task-card-foot { gap: 5px; padding-top: 8px; }
+  .chapter-chip,
+  .task-status { padding: 4px 6px; font-size: 9px; }
+  .task-foot-right { gap: 3px; }
+  .subtask-toggle { font-size: 9px; }
+  .subtasks { gap: 5px; padding: 0 12px 11px 42px; }
+  .subtask-item { gap: 6px; padding: 6px 7px; border-radius: 8px; }
+  .subtask-check { width: 14px; height: 14px; }
+  .subtask-item strong { font-size: 10px; }
+  .subtask-item small { margin-top: 1px; font-size: 9px; }
+  .empty-state { padding: 42px 18px; border-radius: 14px; }
+  .empty-icon { font-size: 38px; }
+  .empty-state h3 { margin: 9px 0 5px; font-size: 16px; }
+  .empty-state p { margin-bottom: 14px; font-size: 10px; }
+  .bottom-nav { right: 16px; bottom: 16px; padding: 4px; border-radius: 13px; }
+  .nav-button { gap: 4px; padding: 6px 8px; border-radius: 8px; font-size: 10px; }
+  .nav-icon { font-size: 14px; }
+  .modal-sheet { width: min(700px, 100%); max-height: 84vh; padding: 18px 20px 20px; border-radius: 17px; }
+  .modal-header { margin-bottom: 12px; }
+  .modal-header h2 { margin-top: 4px; font-size: 20px; }
+  .modal-header .icon-button { width: 32px; height: 32px; font-size: 23px; }
+  .form-group { margin-bottom: 9px; }
+  .form-group label { margin-bottom: 4px; font-size: 10px; }
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group select { height: 34px; padding-left: 10px; font-size: 11px; }
+  .form-group textarea { min-height: 58px; padding: 9px 10px; font-size: 11px; }
+  .decompose-box,
+  .decomposition-panel { padding: 9px; border-radius: 12px; }
+  .decompose-box strong,
+  .decomposition-header strong { font-size: 11px; }
+  .decompose-box p,
+  .draft-subtask input { font-size: 10px; }
+  .draft-subtask { grid-template-columns: 1fr 72px 28px; gap: 6px; }
+  .draft-subtask input { height: 32px; }
+  .draft-subtask button { width: 28px; height: 28px; font-size: 14px; }
+  .modal-actions { gap: 7px; margin-top: 12px; }
+}
