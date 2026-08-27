@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a GameLife 0.1 JSON state file without third-party dependencies."""
+"""Validate a GameLife 0.0.2 JSON state file without third-party dependencies."""
 
 from __future__ import annotations
 

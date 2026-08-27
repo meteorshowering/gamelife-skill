@@ -36,7 +36,7 @@
 
   const DEFAULT_STATE = {
     schema_version: "1.0",
-    version: "0.1.0",
+    version: "0.0.2",
     updated_at: "2026-08-27T00:00:00.000Z",
     profile: { nickname: "旅行者" },
     chapters: [
@@ -191,7 +191,7 @@
     const tasks = Array.isArray(source.tasks) ? source.tasks : clone(DEFAULT_STATE.tasks);
     return {
       schema_version: String(source.schema_version || "1.0"),
-      version: String(source.version || "0.1.0"),
+      version: String(source.version || "0.0.2"),
       updated_at: String(source.updated_at || nowIso()),
       profile: source.profile && typeof source.profile === "object" ? source.profile : { nickname: "旅行者" },
       chapters,

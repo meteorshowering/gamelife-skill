@@ -7,7 +7,7 @@ description: "管理 GameLife 任务：整理当前对话中的工作内容、�
 
 Use this skill when the user wants to turn work or life actions into a GameLife task, inspect or update the task panel, break a large task into executable subtasks, or decide what four actions to focus on today.
 
-## Scope for version 0.1
+## Scope for version 0.0.2
 
 This skill is the `gamelife-skill` package's first core release. Keep the work centered on:
 
@@ -15,7 +15,7 @@ This skill is the `gamelife-skill` package's first core release. Keep the work c
 2. New-task decomposition: convert a large or multi-step task into an editable preview of a parent task and executable subtasks; only persist after the user confirms.
 3. Four daily recommendations: on the first GameLife run for a calendar date, choose four focus actions from unfinished tasks, explain the reasons, and avoid duplicating that day's set.
 
-Do not expand version 0.1 into habits, achievements, levels, maps, social features, cloud sync, or an independent backend unless a current task cannot work without a compatibility field.
+Do not expand version 0.0.2 into habits, achievements, levels, maps, social features, cloud sync, or an independent backend unless a current task cannot work without a compatibility field.
 
 ## Operating workflow
 
@@ -29,7 +29,7 @@ Do not expand version 0.1 into habits, achievements, levels, maps, social featur
 
 ## Conversation access boundary
 
-Version 0.1 does not accept exported or uploaded Codex/ChatGPT conversations, and it must not pretend to retrieve history that the current environment does not expose. Use only the current conversation and explicitly available context. If a requested historical conversation is unavailable, say so and continue with the information that is available.
+Version 0.0.2 does not accept exported or uploaded Codex/ChatGPT conversations, and it must not pretend to retrieve history that the current environment does not expose. Use only the current conversation and explicitly available context. If a requested historical conversation is unavailable, say so and continue with the information that is available.
 
 ## Task decomposition rules
 
@@ -50,9 +50,9 @@ Version 0.1 does not accept exported or uploaded Codex/ChatGPT conversations, an
 
 The HTML is a real user interface, not a screenshot. Preserve the existing GameLife visual direction: light blue background, dark navy-to-teal hero gradient, gold progress accent, rounded translucent cards, Adventure Log/task language, and responsive layout.
 
-The desktop layout is the primary `0.1` acceptance target. Keep the same HTML responsive so it remains usable on mobile; if a conflict appears, preserve task operations and readable mobile cards before decorative fidelity.
+The desktop layout is the primary `0.0.2` acceptance target. Keep the same HTML responsive so it remains usable on mobile; if a conflict appears, preserve task operations and readable mobile cards before decorative fidelity.
 
-Use the deterministic helpers in `scripts/` for state validation, rendering and daily selection when available. Do not add a backend or third-party runtime dependency to the public HTML in version 0.1.
+Use the deterministic helpers in `scripts/` for state validation, rendering and daily selection when available. Do not add a backend or third-party runtime dependency to the public HTML in version 0.0.2.
 
 ## Safety and truthfulness
 

@@ -1284,3 +1284,140 @@ textarea:focus-visible {
     flex: 1;
   }
 }
+
+/* Desktop workbench: dense two-column layout for larger screens. */
+@media (min-width: 1100px) {
+  .app-shell { padding-bottom: 24px; }
+  .topbar {
+    min-height: 60px;
+    padding: 10px max(24px, calc((100vw - 1440px) / 2));
+  }
+  .brand-mark { width: 32px; height: 32px; }
+  main#top {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: 24px;
+    width: min(1440px, calc(100% - 48px));
+    margin: 24px auto 0;
+  }
+  main#top > .hero-section { grid-column: 1 / -1; }
+  main#top > .focus-section { grid-column: 1; }
+  main#top > .tasks-section { grid-column: 2; }
+  .page-section { width: auto; margin: 0; }
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr) 96px minmax(320px, 0.86fr);
+    gap: 22px;
+    min-height: 190px;
+    padding: 28px 34px;
+    border-radius: 28px;
+  }
+  .hero-copy h1 { margin-top: 10px; font-size: 42px; }
+  .hero-subtitle { max-width: 460px; margin-top: 9px; font-size: 14px; }
+  .hero-pills { gap: 6px; margin-top: 17px; }
+  .hero-pills span { padding: 6px 9px; font-size: 11px; }
+  .hero-emblem {
+    align-self: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 28px;
+  }
+  .hero-emblem span { font-size: 38px; }
+  .hero-emblem small { margin-top: 10px; font-size: 8px; }
+  .progress-card {
+    grid-column: 3;
+    align-self: stretch;
+    margin-top: 0;
+    padding: 18px 20px 16px;
+    border-radius: 18px;
+  }
+  .progress-count { margin-top: 4px; font-size: 26px; }
+  .progress-percent { font-size: 30px; }
+  .progress-track { height: 8px; margin-top: 14px; }
+  .progress-card-foot { margin-top: 10px; font-size: 11px; }
+  .focus-section,
+  .tasks-section { padding-top: 0; }
+  .section-heading { align-items: center; gap: 12px; margin: 0 0 13px; }
+  .section-heading h2 { margin-top: 5px; font-size: 24px; }
+  .section-description { margin-top: 6px; font-size: 12px; }
+  .heading-actions { gap: 7px; }
+  .date-chip { padding: 7px 9px; font-size: 11px; }
+  .button { min-height: 34px; padding: 0 12px; font-size: 12px; }
+  .recommendation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .recommendation-card { min-height: 154px; padding: 14px; border-radius: 16px; }
+  .recommendation-card::before { width: 52px; height: 52px; border-radius: 0 16px 0 52px; }
+  .recommendation-rank { width: 25px; height: 25px; border-radius: 8px; font-size: 11px; }
+  .recommendation-status { font-size: 10px; }
+  .recommendation-card h3 { min-height: 38px; margin: 12px 0 6px; font-size: 14px; line-height: 1.35; }
+  .recommendation-card p { min-height: 32px; font-size: 11px; line-height: 1.45; }
+  .recommendation-actions { gap: 6px; margin-top: 11px; }
+  .mini-action,
+  .text-button { font-size: 11px; }
+  .toolbar { grid-template-columns: minmax(150px, 1fr) auto; gap: 8px; margin-bottom: 12px; }
+  .search-control { height: 40px; border-radius: 11px; }
+  .search-control > span { width: 22px; font-size: 22px; }
+  .filter-group { gap: 3px; padding: 3px; border-radius: 10px; }
+  .filter-button { min-height: 28px; padding: 0 8px; border-radius: 7px; font-size: 11px; }
+  .toolbar .status-filter { grid-column: 1 / -1; justify-content: flex-start; }
+  .task-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .task-card { border-radius: 16px; }
+  .task-card-main { padding: 14px 15px 12px; }
+  .check-button { width: 22px; height: 22px; font-size: 12px; }
+  .task-meta { gap: 5px; font-size: 10px; }
+  .task-title { margin-top: 5px; font-size: 15px; line-height: 1.3; }
+  .task-description { margin-top: 5px; font-size: 11px; line-height: 1.4; }
+  .task-menu { gap: 3px; }
+  .task-menu button { width: 28px; height: 28px; font-size: 17px; }
+  .task-progress-row { gap: 9px; margin: 13px 0 12px 33px; }
+  .task-progress-track { height: 6px; }
+  .task-progress-value { width: 32px; font-size: 10px; }
+  .task-card-foot { gap: 8px; padding-top: 10px; }
+  .chapter-chip,
+  .task-status { padding: 5px 8px; font-size: 10px; }
+  .task-foot-right { gap: 5px; }
+  .subtask-toggle { font-size: 10px; }
+  .subtasks { gap: 6px; padding: 0 15px 14px 50px; }
+  .subtask-item { gap: 7px; padding: 8px 9px; border-radius: 10px; }
+  .subtask-item strong { font-size: 11px; }
+  .subtask-item small { margin-top: 2px; font-size: 10px; }
+  .bottom-nav {
+    right: 24px;
+    bottom: 20px;
+    left: auto;
+    gap: 3px;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    border: 1px solid rgba(222, 235, 235, 0.9);
+    border-radius: 16px;
+  }
+  .nav-button {
+    min-width: auto;
+    flex-direction: row;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .nav-icon { font-size: 16px; }
+  .modal-sheet {
+    width: min(760px, 100%);
+    max-height: 86vh;
+    padding: 22px 24px 24px;
+    border-radius: 20px;
+  }
+  .modal-header { margin-bottom: 16px; }
+  .modal-header h2 { margin-top: 5px; font-size: 24px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { margin-bottom: 5px; font-size: 11px; }
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group select { height: 39px; font-size: 12px; }
+  .form-group textarea { min-height: 70px; font-size: 12px; }
+  .decompose-box,
+  .decomposition-panel { padding: 12px; }
+  .decompose-box p,
+  .draft-subtask input { font-size: 11px; }
+  .modal-actions { margin-top: 17px; }
+}
