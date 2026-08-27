@@ -53,9 +53,6 @@ def score_task(task: dict[str, Any], chapters: dict[str, dict[str, Any]], day: d
     if task.get("status") == "in_progress":
         score += 12
         reasons.append("已经开始，适合保持推进")
-    elif task.get("progress", 0) > 0:
-        score += 6
-        reasons.append("已有部分进度")
     chapter = chapters.get(task.get("chapter_id"), {})
     if chapter.get("type") == "main":
         score += 6

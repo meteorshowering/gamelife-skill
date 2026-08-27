@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "version": "0.0.2",
   "updated_at": "2026-08-27T00:00:00.000Z",
   "profile": {
@@ -12,7 +12,6 @@
       "description": "学习与课程推进",
       "type": "main",
       "status": "active",
-      "progress": 35,
       "order": 1
     },
     {
@@ -21,7 +20,6 @@
       "description": "创意与实验",
       "type": "side",
       "status": "active",
-      "progress": 20,
       "order": 2
     }
   ],
@@ -34,7 +32,6 @@
       "type": "study",
       "status": "in_progress",
       "priority": "high",
-      "progress": 35,
       "due_date": "2026-08-29",
       "subtasks": [
         {
@@ -65,7 +62,6 @@
       "type": "study",
       "status": "todo",
       "priority": "medium",
-      "progress": 0,
       "due_date": "",
       "subtasks": [],
       "ai_generated": false,
@@ -82,7 +78,6 @@
       "type": "creative",
       "status": "in_progress",
       "priority": "medium",
-      "progress": 65,
       "due_date": "",
       "subtasks": [],
       "ai_generated": false,
@@ -99,7 +94,6 @@
       "type": "creative",
       "status": "todo",
       "priority": "low",
-      "progress": 0,
       "due_date": "",
       "subtasks": [],
       "ai_generated": false,
@@ -116,7 +110,6 @@
       "type": "creative",
       "status": "completed",
       "priority": "medium",
-      "progress": 100,
       "due_date": "",
       "subtasks": [],
       "ai_generated": false,

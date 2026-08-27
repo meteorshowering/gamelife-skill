@@ -36,9 +36,8 @@ class StateContractTests(unittest.TestCase):
         self.assertLessEqual(len(subtasks), 5)
         self.assertTrue(all(item["title"] and item["estimated_minutes"] > 0 for item in subtasks))
 
-    def test_invalid_completed_progress_is_rejected(self):
+    def test_removed_progress_field_is_rejected(self):
         state = load_state(FIXTURE)
-        state["tasks"][0]["status"] = "completed"
         state["tasks"][0]["progress"] = 80
         with self.assertRaises(ValidationError):
             validate_state(state)

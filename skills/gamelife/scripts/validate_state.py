@@ -37,9 +37,9 @@ def _require_string(obj: dict[str, Any], key: str, path: str, errors: list[str])
         errors.append(f"{path}.{key} must be a non-empty string")
 
 
-def _check_progress(value: Any, path: str, errors: list[str]) -> None:
-    if not isinstance(value, int) or isinstance(value, bool) or not 0 <= value <= 100:
-        errors.append(f"{path} must be an integer from 0 to 100")
+def _reject_removed_fields(obj: dict[str, Any], path: str, errors: list[str]) -> None:
+    if "progress" in obj:
+        errors.append(f"{path}.progress is removed; use status and completion actions instead")
 
 
 def validate_state(state: Any) -> bool:
@@ -74,6 +74,7 @@ def validate_state(state: Any) -> bool:
         if not isinstance(chapter, dict):
             errors.append(f"{path} must be an object")
             continue
+        _reject_removed_fields(chapter, path, errors)
         _require_string(chapter, "id", path, errors)
         _require_string(chapter, "title", path, errors)
         chapter_id = chapter.get("id")
@@ -85,13 +86,13 @@ def validate_state(state: Any) -> bool:
             errors.append(f"{path}.type must be one of {sorted(CHAPTER_TYPES)}")
         if chapter.get("status") not in CHAPTER_STATUSES:
             errors.append(f"{path}.status must be one of {sorted(CHAPTER_STATUSES)}")
-        _check_progress(chapter.get("progress"), f"{path}.progress", errors)
 
     for index, task in enumerate(tasks):
         path = f"state.tasks[{index}]"
         if not isinstance(task, dict):
             errors.append(f"{path} must be an object")
             continue
+        _reject_removed_fields(task, path, errors)
         for field in ("id", "title", "description", "type", "status", "priority"):
             _require_string(task, field, path, errors)
         task_id = task.get("id")
@@ -105,9 +106,6 @@ def validate_state(state: Any) -> bool:
             errors.append(f"{path}.status must be one of {sorted(TASK_STATUSES)}")
         if task.get("priority") not in PRIORITIES:
             errors.append(f"{path}.priority must be one of {sorted(PRIORITIES)}")
-        _check_progress(task.get("progress"), f"{path}.progress", errors)
-        if task.get("status") == "completed" and task.get("progress") != 100:
-            errors.append(f"{path} completed tasks must have progress 100")
         if not isinstance(task.get("subtasks", []), list):
             errors.append(f"{path}.subtasks must be an array")
             continue

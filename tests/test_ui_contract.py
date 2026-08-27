@@ -14,7 +14,9 @@ class UserFacingUiTests(unittest.TestCase):
         self.assertNotIn("对话整理", HTML)
         self.assertNotIn("任务拆解", HTML)
         self.assertIn('id="completed-count"', HTML)
-        self.assertIn('id="overall-progress-fill"', HTML)
+        self.assertIn('id="active-count"', HTML)
+        self.assertNotIn('overall-progress', HTML)
+        self.assertNotIn('task-progress', HTML)
 
     def test_styles_have_separate_narrow_panel_density_mode(self):
         self.assertIn("@media (min-width: 1100px)", CSS)

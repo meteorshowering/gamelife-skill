@@ -35,7 +35,7 @@
   const PRIORITY_SCORE = { urgent: 40, high: 30, medium: 20, low: 10 };
 
   const DEFAULT_STATE = {
-    schema_version: "1.0",
+    schema_version: "1.1",
     version: "0.0.2",
     updated_at: "2026-08-27T00:00:00.000Z",
     profile: { nickname: "旅行者" },
@@ -46,7 +46,6 @@
         description: "把课程、复习和知识积累推进成一条稳定的主线。",
         type: "main",
         status: "active",
-        progress: 35,
         order: 1,
       },
       {
@@ -55,7 +54,6 @@
         description: "记录创意、实验和作品产出的支线旅程。",
         type: "side",
         status: "active",
-        progress: 20,
         order: 2,
       },
       {
@@ -64,7 +62,6 @@
         description: "用小步行动保持身体状态和生活节奏。",
         type: "side",
         status: "active",
-        progress: 100,
         order: 3,
       },
     ],
@@ -77,7 +74,6 @@
         type: "study",
         status: "in_progress",
         priority: "high",
-        progress: 35,
         due_date: "",
         subtasks: [],
         ai_generated: false,
@@ -94,7 +90,6 @@
         type: "study",
         status: "todo",
         priority: "medium",
-        progress: 0,
         due_date: "",
         subtasks: [],
         ai_generated: false,
@@ -111,7 +106,6 @@
         type: "creative",
         status: "in_progress",
         priority: "medium",
-        progress: 65,
         due_date: "",
         subtasks: [],
         ai_generated: false,
@@ -128,7 +122,6 @@
         type: "creative",
         status: "todo",
         priority: "low",
-        progress: 0,
         due_date: "",
         subtasks: [],
         ai_generated: false,
@@ -145,7 +138,6 @@
         type: "health",
         status: "completed",
         priority: "medium",
-        progress: 100,
         due_date: "",
         subtasks: [],
         ai_generated: false,
@@ -189,17 +181,26 @@
     const source = raw && typeof raw === "object" ? raw : {};
     const chapters = Array.isArray(source.chapters) ? source.chapters : clone(DEFAULT_STATE.chapters);
     const tasks = Array.isArray(source.tasks) ? source.tasks : clone(DEFAULT_STATE.tasks);
+    const cleanChapters = chapters.map((chapter) => {
+      const cleanChapter = { ...chapter };
+      delete cleanChapter.progress;
+      return cleanChapter;
+    });
+    const cleanTasks = tasks.map((task) => {
+      const cleanTask = { ...task };
+      delete cleanTask.progress;
+      return {
+        ...cleanTask,
+        subtasks: Array.isArray(task.subtasks) ? task.subtasks : [],
+      };
+    });
     return {
-      schema_version: String(source.schema_version || "1.0"),
+      schema_version: source.schema_version === "1.0" ? "1.1" : String(source.schema_version || "1.1"),
       version: String(source.version || "0.0.2"),
       updated_at: String(source.updated_at || nowIso()),
       profile: source.profile && typeof source.profile === "object" ? source.profile : { nickname: "旅行者" },
-      chapters,
-      tasks: tasks.map((task) => ({
-        ...task,
-        subtasks: Array.isArray(task.subtasks) ? task.subtasks : [],
-        progress: Number.isFinite(Number(task.progress)) ? Math.max(0, Math.min(100, Number(task.progress))) : 0,
-      })),
+      chapters: cleanChapters,
+      tasks: cleanTasks,
       daily_recommendations:
         source.daily_recommendations && typeof source.daily_recommendations === "object"
           ? source.daily_recommendations
@@ -249,19 +250,6 @@
     return state.chapters.find((chapter) => chapter.id === chapterId) || null;
   }
 
-  function updateChapterProgress() {
-    state.chapters = state.chapters.map((chapter) => {
-      const chapterTasks = state.tasks.filter((task) => task.chapter_id === chapter.id);
-      const completed = chapterTasks.filter((task) => task.status === "completed").length;
-      const progress = chapterTasks.length ? Math.round((completed / chapterTasks.length) * 100) : 0;
-      return {
-        ...chapter,
-        progress,
-        status: progress === 100 && chapterTasks.length ? "completed" : "active",
-      };
-    });
-  }
-
   function dueScore(task, dayKey) {
     if (!task.due_date) return { score: 0, reason: "" };
     const due = new Date(`${task.due_date.slice(0, 10)}T00:00:00`);
@@ -285,9 +273,6 @@
     if (task.status === "in_progress") {
       score += 12;
       reasons.push("已经开始，适合保持推进");
-    } else if (task.progress > 0) {
-      score += 6;
-      reasons.push("已有部分进度");
     }
     if (chapter?.type === "main") {
       score += 6;
@@ -352,12 +337,9 @@
     const total = state.tasks.length;
     const completed = state.tasks.filter((task) => task.status === "completed").length;
     const active = total - completed;
-    const progress = total ? Math.round((completed / total) * 100) : 0;
     document.querySelector("#total-count").textContent = total;
     document.querySelector("#completed-count").textContent = completed;
     document.querySelector("#active-count").textContent = active;
-    document.querySelector("#overall-progress").textContent = `${progress}%`;
-    document.querySelector("#overall-progress-fill").style.width = `${progress}%`;
     document.querySelector("#profile-caption").textContent = `${state.profile.nickname || "旅行者"} · ${state.chapters.length} 个方向`;
   }
 
@@ -372,7 +354,7 @@
     const dayKey = TODAY();
     const record = ensureTodayRecommendations();
     document.querySelector("#today-date").textContent = formatToday(dayKey);
-    document.querySelector("#today-caption").textContent = "按优先级、进度和截止日期排序";
+    document.querySelector("#today-caption").textContent = "按优先级和截止日期排序";
     const list = document.querySelector("#recommendation-list");
     list.innerHTML = record.items
       .map((item) => {
@@ -443,10 +425,6 @@
                   <button class="delete-task" type="button" aria-label="删除任务" data-action="delete-task" data-task-id="${escapeHtml(task.id)}">×</button>
                 </div>
               </div>
-              <div class="task-progress-row">
-                <div class="task-progress-track"><span style="width: ${Math.max(0, Math.min(100, Number(task.progress) || 0))}%"></span></div>
-                <span class="task-progress-value">${Math.round(Number(task.progress) || 0)}%</span>
-              </div>
               <div class="task-card-foot">
                 <span class="chapter-chip">${escapeHtml(chapter?.title || "未分类")}</span>
                 <div class="task-foot-right">
@@ -466,7 +444,6 @@
   }
 
   function render() {
-    updateChapterProgress();
     renderSummary();
     renderRecommendations();
     renderTasks();
@@ -498,8 +475,6 @@
     document.querySelector("#task-type").value = task?.type || "study";
     document.querySelector("#task-priority").value = task?.priority || "medium";
     document.querySelector("#task-due-date").value = task?.due_date || "";
-    document.querySelector("#task-progress").value = task?.progress || 0;
-    document.querySelector("#task-progress-output").value = `${task?.progress || 0}%`;
     draftSubtasks = task ? clone(task.subtasks || []) : [];
     renderDraftSubtasks();
     modal.hidden = false;
@@ -608,7 +583,6 @@
       type: document.querySelector("#task-type").value,
       priority: document.querySelector("#task-priority").value,
       due_date: document.querySelector("#task-due-date").value,
-      progress: Math.max(0, Math.min(100, Number(document.querySelector("#task-progress").value) || 0)),
     };
     const timestamp = nowIso();
     if (taskId) {
@@ -616,8 +590,8 @@
       if (!task) return;
       Object.assign(task, taskData, {
         updated_at: timestamp,
-        status: taskData.progress >= 100 ? "completed" : taskData.progress > 0 ? "in_progress" : task.status === "completed" ? "todo" : task.status,
-        completed_at: taskData.progress >= 100 ? task.completed_at || timestamp : "",
+        status: task.status,
+        completed_at: task.status === "completed" ? task.completed_at || timestamp : "",
       });
       if (draftSubtasks.length) task.subtasks = draftSubtasks.map((subtask, index) => ({ ...subtask, task_id: task.id, order: index + 1, needs_confirmation: false, updated_at: timestamp }));
       showToast("任务已更新");
@@ -625,19 +599,18 @@
       const task = {
         id: createId("task"),
         ...taskData,
-        status: taskData.progress >= 100 ? "completed" : taskData.progress > 0 ? "in_progress" : "todo",
+        status: "todo",
         subtasks: draftSubtasks.map((subtask, index) => ({ ...subtask, id: createId("subtask"), task_id: "", order: index + 1, needs_confirmation: false, updated_at: timestamp })),
         ai_generated: false,
         ai_reason: draftSubtasks.length ? "用户在 HTML 中确认的本地拆解" : "",
         created_at: timestamp,
         updated_at: timestamp,
-        completed_at: taskData.progress >= 100 ? timestamp : "",
+        completed_at: "",
       };
       task.subtasks.forEach((subtask) => { subtask.task_id = task.id; });
       state.tasks.unshift(task);
       showToast(draftSubtasks.length ? "任务和子任务已保存" : "任务已创建");
     }
-    updateChapterProgress();
     saveState();
     closeTaskModal();
     render();
@@ -648,13 +621,11 @@
     if (!task) return;
     const completed = task.status === "completed";
     task.status = completed ? "todo" : "completed";
-    task.progress = completed ? 0 : 100;
     task.completed_at = completed ? "" : nowIso();
     task.updated_at = nowIso();
     const record = state.daily_recommendations[TODAY()];
     const item = record?.items?.find((candidate) => candidate.task_id === task.id);
     if (item) item.status = completed ? "suggested" : "completed";
-    updateChapterProgress();
     saveState(completed ? "任务已重新开启" : "任务已完成");
     render();
   }
@@ -668,11 +639,9 @@
     subtask.updated_at = nowIso();
     const total = task.subtasks.length;
     const completed = task.subtasks.filter((candidate) => candidate.status === "completed").length;
-    task.progress = total ? Math.round((completed / total) * 100) : task.progress;
-    task.status = task.progress >= 100 ? "completed" : task.progress > 0 ? "in_progress" : "todo";
+    task.status = completed === total && total ? "completed" : completed > 0 ? "in_progress" : "todo";
     task.completed_at = task.status === "completed" ? task.completed_at || nowIso() : "";
     task.updated_at = nowIso();
-    updateChapterProgress();
     saveState("子任务状态已更新");
     render();
   }
@@ -685,7 +654,6 @@
     Object.values(state.daily_recommendations).forEach((record) => {
       record.items = record.items.map((item) => item.task_id === taskId ? { ...item, task_id: null, title_snapshot: "待补充", status: "placeholder", reason: "原任务已删除，需要重新安排" } : item);
     });
-    updateChapterProgress();
     saveState("任务已删除");
     render();
   }
@@ -803,9 +771,6 @@
         completed_at: "",
       });
       renderDraftSubtasks();
-    });
-    document.querySelector("#task-progress").addEventListener("input", (event) => {
-      document.querySelector("#task-progress-output").value = `${event.target.value}%`;
     });
     document.querySelector("#task-search").addEventListener("input", (event) => {
       filters.keyword = event.target.value;

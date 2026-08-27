@@ -38,10 +38,6 @@
             <span>进行中</span>
             <strong id="active-count">0</strong>
           </div>
-          <div class="summary-progress">
-            <div class="progress-track"><span id="overall-progress-fill"></span></div>
-          </div>
-          <strong class="summary-percent" id="overall-progress">0%</strong>
           <span class="summary-profile" id="profile-caption">旅行者 · 0 个方向</span>
         </section>
 
@@ -50,7 +46,7 @@
             <div>
               <p class="section-kicker">今日</p>
               <h2>今日行动</h2>
-              <p class="section-description" id="today-caption">按优先级、进度和截止日期排序</p>
+              <p class="section-description" id="today-caption">按优先级和截止日期排序</p>
             </div>
             <div class="heading-actions">
               <span class="date-chip" id="today-date">----</span>
@@ -162,13 +158,6 @@
               <label for="task-due-date">截止日期</label>
               <input id="task-due-date" name="due_date" type="date" />
             </div>
-          </div>
-          <div class="form-group progress-form-group">
-            <div class="form-label-row">
-              <label for="task-progress">当前进度</label>
-              <output id="task-progress-output" for="task-progress">0%</output>
-            </div>
-            <input id="task-progress" name="progress" type="range" min="0" max="100" step="5" value="0" />
           </div>
 
           <div class="decompose-box">

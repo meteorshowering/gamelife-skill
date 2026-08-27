@@ -48,7 +48,7 @@ Version 0.0.2 does not accept exported or uploaded Codex/ChatGPT conversations, 
 
 ## HTML workbench contract
 
-The HTML is a real user interface, not a screenshot. Preserve a calm, compact GameLife workbench: light blue background, restrained navy/teal accents, clear progress indicators, compact cards, and responsive layout. Do not add a large marketing Hero, product-explanation pills, or implementation-facing copy to the final user interface.
+The HTML is a real user interface, not a screenshot. Preserve a calm, compact GameLife workbench: light blue background, restrained navy/teal accents, clear task status indicators, compact cards, and responsive layout. Do not add a large marketing Hero, product-explanation pills, or implementation-facing copy to the final user interface.
 
 The desktop layout is the primary `0.0.2` acceptance target. Use a thin summary strip and keep the main content dense: full-width desktop may use two columns, while a narrower Codex side panel should reduce type, spacing, and card density before switching to a readable single column. Keep the same HTML responsive so it remains usable on mobile.
 

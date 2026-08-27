@@ -4,7 +4,7 @@
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "version": "0.0.2",
   "updated_at": "2026-08-27T00:00:00.000Z",
   "profile": {
@@ -31,14 +31,12 @@
   "description": "长期方向说明",
   "type": "main",
   "status": "active",
-  "progress": 0,
   "order": 1
 }
 ```
 
 - `type`：`main` 或 `side`。
 - `status`：`active`、`paused`、`completed`、`archived`。
-- `progress`：0–100 的整数。
 
 ## 任务
 
@@ -51,7 +49,6 @@
   "type": "study",
   "status": "in_progress",
   "priority": "high",
-  "progress": 35,
   "due_date": "",
   "subtasks": [],
   "ai_generated": false,
@@ -65,7 +62,6 @@
 - `type`：`study`、`work`、`health`、`creative`、`life`、`review`、`other`。
 - `status`：`todo`、`in_progress`、`completed`、`cancelled`、`archived`。
 - `priority`：`low`、`medium`、`high`、`urgent`。
-- `progress`：0–100 的整数；完成任务必须为 100。
 - `subtasks` 可以为空数组，也可以包含子任务对象。
 
 ## 子任务

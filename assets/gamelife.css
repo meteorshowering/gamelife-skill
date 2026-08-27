@@ -158,7 +158,6 @@ textarea:focus-visible {
 }
 
 .hero-copy,
-.progress-card,
 .hero-emblem {
   position: relative;
   z-index: 1;
@@ -233,18 +232,6 @@ textarea:focus-visible {
   line-height: 1.4;
   text-align: center;
 }
-
-.progress-card {
-  grid-column: 1 / -1;
-  margin-top: 4px;
-  padding: 22px 24px 19px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 24px;
-  background: rgba(4, 31, 48, 0.25);
-}
-
-.progress-card-head,
-.progress-card-foot,
 .section-heading,
 .task-card-head,
 .task-card-foot,
@@ -255,61 +242,6 @@ textarea:focus-visible {
   align-items: center;
   justify-content: space-between;
 }
-
-.progress-label {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 13px;
-}
-
-.progress-count {
-  margin: 6px 0 0;
-  font-size: 30px;
-  font-weight: 750;
-}
-
-.progress-count small {
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.progress-percent {
-  color: var(--gold);
-  font-size: 34px;
-}
-
-.progress-track,
-.task-progress-track {
-  overflow: hidden;
-  height: 9px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.progress-track {
-  margin-top: 20px;
-}
-
-.progress-track span,
-.task-progress-track span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--gold), #fff0c8);
-  transition: width 0.3s ease;
-}
-
-.progress-card-foot {
-  margin-top: 14px;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 12px;
-}
-
-.progress-card-foot b {
-  color: #fff;
-}
-
 .focus-section,
 .tasks-section {
   padding-top: 46px;
@@ -682,36 +614,6 @@ textarea:focus-visible {
   color: var(--orange);
   background: #fff0eb;
 }
-
-.task-progress-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0 17px 38px;
-}
-
-.task-progress-track {
-  flex: 1;
-  height: 7px;
-  background: #e5eeee;
-}
-
-.task-progress-track span {
-  background: linear-gradient(90deg, #55b7ac, var(--teal));
-}
-
-.task-card.is-completed .task-progress-track span {
-  background: #9ac8bd;
-}
-
-.task-progress-value {
-  width: 38px;
-  color: var(--teal);
-  font-size: 11px;
-  font-weight: 750;
-  text-align: right;
-}
-
 .task-card-foot {
   gap: 12px;
   padding-top: 14px;
@@ -978,12 +880,6 @@ textarea:focus-visible {
   font-size: 13px;
   font-weight: 800;
 }
-
-#task-progress {
-  width: 100%;
-  accent-color: var(--teal);
-}
-
 .decompose-box {
   display: flex;
   align-items: center;
@@ -1158,26 +1054,6 @@ textarea:focus-visible {
   .hero-subtitle {
     font-size: 14px;
   }
-
-  .progress-card {
-    margin-top: 5px;
-    padding: 17px;
-  }
-
-  .progress-count {
-    font-size: 25px;
-  }
-
-  .progress-percent {
-    font-size: 29px;
-  }
-
-  .progress-card-foot {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 5px;
-  }
-
   .focus-section,
   .tasks-section {
     padding-top: 34px;
@@ -1234,11 +1110,6 @@ textarea:focus-visible {
   .task-title {
     font-size: 16px;
   }
-
-  .task-progress-row {
-    margin-left: 37px;
-  }
-
   .subtasks {
     padding: 0 16px 16px 52px;
   }
@@ -1323,17 +1194,6 @@ textarea:focus-visible {
   }
   .hero-emblem span { font-size: 38px; }
   .hero-emblem small { margin-top: 10px; font-size: 8px; }
-  .progress-card {
-    grid-column: 3;
-    align-self: stretch;
-    margin-top: 0;
-    padding: 18px 20px 16px;
-    border-radius: 18px;
-  }
-  .progress-count { margin-top: 4px; font-size: 26px; }
-  .progress-percent { font-size: 30px; }
-  .progress-track { height: 8px; margin-top: 14px; }
-  .progress-card-foot { margin-top: 10px; font-size: 11px; }
   .focus-section,
   .tasks-section { padding-top: 0; }
   .section-heading { align-items: center; gap: 12px; margin: 0 0 13px; }
@@ -1367,9 +1227,6 @@ textarea:focus-visible {
   .task-description { margin-top: 5px; font-size: 11px; line-height: 1.4; }
   .task-menu { gap: 3px; }
   .task-menu button { width: 28px; height: 28px; font-size: 17px; }
-  .task-progress-row { gap: 9px; margin: 13px 0 12px 33px; }
-  .task-progress-track { height: 6px; }
-  .task-progress-value { width: 32px; font-size: 10px; }
   .task-card-foot { gap: 8px; padding-top: 10px; }
   .chapter-chip,
   .task-status { padding: 5px 8px; font-size: 10px; }
@@ -1456,13 +1313,6 @@ textarea:focus-visible {
   .hero-emblem { width: 72px; height: 72px; border-radius: 21px; }
   .hero-emblem span { font-size: 29px; }
   .hero-emblem small { margin-top: 7px; font-size: 7px; letter-spacing: 1.5px; }
-  .progress-card { padding: 13px 15px 12px; border-radius: 14px; }
-  .progress-label { font-size: 11px; }
-  .progress-count { margin-top: 2px; font-size: 22px; }
-  .progress-count small { font-size: 11px; }
-  .progress-percent { font-size: 25px; }
-  .progress-track { height: 6px; margin-top: 10px; }
-  .progress-card-foot { margin-top: 7px; font-size: 10px; }
   .section-heading { gap: 8px; margin-bottom: 9px; }
   .section-heading h2 { margin-top: 4px; font-size: 20px; }
   .section-description { margin-top: 4px; font-size: 10px; }
@@ -1496,9 +1346,6 @@ textarea:focus-visible {
   .task-description { margin-top: 4px; font-size: 10px; line-height: 1.35; }
   .task-menu { gap: 2px; }
   .task-menu button { width: 25px; height: 25px; font-size: 15px; }
-  .task-progress-row { gap: 7px; margin: 10px 0 9px 29px; }
-  .task-progress-track { height: 5px; }
-  .task-progress-value { width: 27px; font-size: 9px; }
   .task-card-foot { gap: 5px; padding-top: 8px; }
   .chapter-chip,
   .task-status { padding: 4px 6px; font-size: 9px; }
@@ -1540,7 +1387,7 @@ textarea:focus-visible {
 /* Final user-facing UI: compact summary and viewport-aware density. */
 .summary-strip {
   display: grid;
-  grid-template-columns: auto auto auto minmax(120px, 1fr) auto auto;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   padding: 9px 13px;
@@ -1578,22 +1425,6 @@ textarea:focus-visible {
   color: var(--teal-dark);
   font-size: 15px;
 }
-
-.summary-progress .progress-track {
-  height: 6px;
-  margin: 0;
-  background: #e3eeee;
-}
-
-.summary-progress .progress-track span {
-  background: linear-gradient(90deg, #55b7ac, var(--teal));
-}
-
-.summary-percent {
-  color: var(--teal);
-  font-size: 16px;
-}
-
 .summary-profile {
   white-space: nowrap;
 }
@@ -1614,7 +1445,7 @@ textarea:focus-visible {
   .page-section { width: auto; margin: 0; }
   .focus-section,
   .tasks-section { padding-top: 16px; }
-  .summary-strip { grid-template-columns: auto auto auto minmax(120px, 1fr) auto; gap: 8px; }
+  .summary-strip { grid-template-columns: auto auto auto minmax(0, 1fr); gap: 8px; }
   .summary-profile { display: none; }
   .section-heading { gap: 10px; margin: 0 0 10px; }
   .section-heading h2 { margin-top: 4px; font-size: 20px; }
@@ -1650,13 +1481,12 @@ textarea:focus-visible {
   main#top > .summary-strip { grid-column: 1 / -1; grid-row: 1; }
   main#top > .focus-section { grid-column: 1; grid-row: 2; }
   main#top > .tasks-section { grid-column: 2; grid-row: 2; }
-  .summary-strip { grid-template-columns: auto auto auto minmax(150px, 1fr) auto auto; gap: 10px; padding: 8px 12px; }
+  .summary-strip { grid-template-columns: auto auto auto minmax(0, 1fr); gap: 10px; padding: 8px 12px; }
   .summary-title strong { font-size: 11px; }
   .summary-stat { padding-left: 10px; }
   .summary-stat span,
   .summary-profile { font-size: 9px; }
   .summary-stat strong { font-size: 14px; }
-  .summary-percent { font-size: 15px; }
   .focus-section,
   .tasks-section { padding-top: 0; }
   .section-heading { gap: 8px; margin-bottom: 9px; }
@@ -1693,12 +1523,6 @@ textarea:focus-visible {
     justify-content: space-between;
     padding-left: 0;
     border-left: 0;
-  }
-  .summary-progress {
-    grid-column: 1 / -1;
-  }
-  .summary-percent {
-    justify-self: end;
   }
   .summary-profile {
     grid-column: 1 / -1;
@@ -1737,7 +1561,7 @@ textarea:focus-visible {
     margin-left: auto;
   }
   .summary-strip {
-    grid-template-columns: auto auto auto minmax(72px, 1fr) auto;
+    grid-template-columns: auto auto auto minmax(0, 1fr);
     gap: 7px;
     min-height: 52px;
     padding: 7px 9px;
@@ -1756,8 +1580,6 @@ textarea:focus-visible {
   .summary-stat span,
   .summary-profile { font-size: 9px; }
   .summary-stat strong { font-size: 13px; }
-  .summary-progress .progress-track { height: 5px; }
-  .summary-percent { font-size: 14px; }
   .summary-profile { display: none; }
   .focus-section,
   .tasks-section { padding-top: 15px; }
@@ -1853,8 +1675,6 @@ textarea:focus-visible {
     border-bottom: 1px solid #e7efef;
   }
   .summary-stat { justify-content: space-between; padding-left: 0; }
-  .summary-progress { grid-column: 1 / 3; }
-  .summary-percent { justify-self: end; }
   .summary-profile { display: none; }
   .focus-section,
   .tasks-section { padding-top: 16px; }
